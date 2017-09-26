@@ -9,6 +9,7 @@ using namespace std;
 class Point
 {
 private:
+    // Class variables (Data members)
     float x;        // x-coordinate
     float y;        // y-coordinate
 public:
