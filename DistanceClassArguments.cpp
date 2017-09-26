@@ -16,14 +16,20 @@ class Distance
 private:
     int feet;
     float inches;
+    // Every object shares this variable
+    static int count;       // one variable per CLASS
 public:
     // Constructor with no arguments
     Distance():feet(0), inches(0)
-    {/*Empty body*/}
+    {
+        count ++;
+    }
 
     // Constructor with two arguments
     Distance(int ft, float in):feet(ft), inches(in)
-    {/* Empty body*/}
+    {
+        count ++;
+    }
 
     int cm;
 
@@ -45,9 +51,13 @@ public:
     }
     void addDistance(Distance d1, Distance d2);     // Inside the class
     Distance addDistanceToMe(Distance d1);
+    int getCount()
+    {
+        return count;
+    }
 
 };
-
+int Distance::count = 0;   // Static variable must be declared outside the class
 // Prototypes
 
 
@@ -56,17 +66,22 @@ int main()
 {
     // Create an instance "instantiate" the class
     Distance d1, d4;
+    cout << "Count is " << d1.getCount() << endl;
     Distance d2(8, 2.0);
+    cout << "Count is " << d2.getCount() << endl;
     Distance d3(2, 4.0);
 
     cout << "\nd1 = ";
     d1.showDistance();
+    cout << "Count is " << d1.getCount() << endl;
 
     cout << "\nd2 = ";
     d2.showDistance();
+    cout << "Count is " << d2.getCount() << endl;
 
     cout << "\nd3 = ";
     d3.showDistance();
+    cout << "Count is " << d3.getCount() << endl;
 
     d4.addDistance(d2, d3);
     cout << "\nd4 = ";
