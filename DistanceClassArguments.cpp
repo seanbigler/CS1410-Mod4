@@ -59,7 +59,7 @@ public:
 };
 int Distance::count = 0;   // Static variable must be declared outside the class
 // Prototypes
-
+void ShowCurrentCount(Distance d1);
 
 // Main Program Program
 int main()
@@ -89,6 +89,8 @@ int main()
     d4 = d4.addDistanceToMe(d2);
     cout << "\nNew d4 =";
     d4.showDistance();
+
+    ShowCurrentCount(d4);
 
 
     return 0;
@@ -124,4 +126,9 @@ Distance Distance::addDistanceToMe(Distance d1)
     }
     temp.feet += feet + d1.feet;
     return temp;
+}
+void ShowCurrentCount(Distance d1)
+{
+    cout << "The current count in the class is: "
+         << d1.getCount() << endl;
 }
