@@ -44,6 +44,7 @@ public:
         cout << "Distance is: " << feet << " ' " << inches << " \"" << endl;
     }
     void addDistance(Distance d1, Distance d2);     // Inside the class
+    Distance addDistanceToMe(Distance d1);
 
 };
 
@@ -70,6 +71,9 @@ int main()
     d4.addDistance(d2, d3);
     cout << "\nd4 = ";
     d4.showDistance();
+    d4 = d4.addDistanceToMe(d2);
+    cout << "\nNew d4 =";
+    d4.showDistance();
 
 
     return 0;
@@ -92,4 +96,17 @@ void Distance::addDistance(Distance d1, Distance d2)    // :: means that it belo
 
     }
     feet += d1.feet + d2.feet;  // Add feet
+}
+Distance Distance::addDistanceToMe(Distance d1)
+{
+    Distance temp;
+    temp.inches = inches + d1.inches;
+    if(temp.inches >= 12)
+    {
+        temp.inches -= 12.0;
+        // temp.feet = 1;
+        temp.feet ++;
+    }
+    temp.feet += feet + d1.feet;
+    return temp;
 }
