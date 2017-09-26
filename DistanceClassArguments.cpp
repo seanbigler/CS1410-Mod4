@@ -17,7 +17,16 @@ private:
     int feet;
     float inches;
 public:
+    // Constructor with no arguments
+    Distance():feet(0), inches(0)
+    {/*Empty body*/}
+
+    // Constructor with two arguments
+    Distance(int ft, float in):feet(ft), inches(in)
+    {/* Empty body*/}
+
     int cm;
+
     void setDistance(int ft, float in)
     {
         feet = ft;
@@ -34,6 +43,8 @@ public:
     {
         cout << "Distance is: " << feet << " ' " << inches << " \"" << endl;
     }
+    void addDistance(Distance d1, Distance d2);     // Inside the class
+
 };
 
 // Prototypes
@@ -43,16 +54,42 @@ public:
 int main()
 {
     // Create an instance "instantiate" the class
-    Distance d1, d2;
-    d1.getDistance();
+    Distance d1, d4;
+    Distance d2(8, 2.0);
+    Distance d3(2, 4.0);
+
+    cout << "\nd1 = ";
     d1.showDistance();
-    d2.setDistance(6, 6.5);
+
+    cout << "\nd2 = ";
     d2.showDistance();
-    // Access a public data member
-    d2.cm = 8;
-    cout << "cm is " << d2.cm << endl;
+
+    cout << "\nd3 = ";
+    d3.showDistance();
+
+    d4.addDistance(d2, d3);
+    cout << "\nd4 = ";
+    d4.showDistance();
+
 
     return 0;
 }
 
 // Function Definitions
+// Template when belongs to class: CLASSNAME::Function_name()
+// The scope resolution operator is ::
+// 1) Declare prototype inside class
+// 2) Definition is outside class
+// 3) Use the scope resolution operator ::
+void Distance::addDistance(Distance d1, Distance d2)    // :: means that it belongs to the class
+{
+    inches = d1.inches + d2.inches;
+    feet = 0;
+    if(inches >= 12.0)
+    {
+        inches -= 12.0;     // Check for extra foot
+        feet++;
+
+    }
+    feet += d1.feet + d2.feet;  // Add feet
+}
